@@ -2,11 +2,26 @@
 /**
 * Plugin Name: WP json output normalizer
 * Plugin URI: https://github.com/AllFestivals/WP-json-output-normalizer
-* Description: Adding by us selected items to JSON.
-* Version: 1.0.0
+* Description: Filtering posts by meta data of post. Adding by us selected items to JSON.
+* Version: 1.1.0
 * Author: marek
 * License: GPL2
 */
+
+/**
+ * Filtering posts by meta data of post.
+ */
+
+add_filter( 'json_query_vars', 'slug_allow_meta' );
+
+function slug_allow_meta( $valid_vars ) {
+	$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value' ) );
+	return $valid_vars;
+}
+
+/**
+ * Adding by us selected items to JSON.
+ */
 
 function my_api_init($server) {
     global $wp_json_media;
