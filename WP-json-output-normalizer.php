@@ -47,8 +47,8 @@ function json_normalizer_prepare_post($post) {
 class Post_to_Object {
     public $post = null;
     // Fields selected to be included in map
-    public $map = array('ID', 'title', 'link', 'content', 'date', 'author', 'featured_image');
-    public $author_map = array('ID', 'username', 'name', 'firstname', 'lastname', 'avatar');
+    public $map = array('ID', 'title', 'link', 'content', 'date', 'author', 'featured_image', 'type');
+    public $author_map = array('ID', 'username', 'name', 'firstname', 'lastname', 'avatar', 'description');
     public function __construct($post) {
         $this->post = $post;
     }
@@ -98,8 +98,10 @@ class Post_to_Object {
 
         if ( $array_key_exists ) {
 
-        	if (!$isAuthor) {
-        		$post2 = $post[$k];
+			if ($v == 'title') {
+				$post2 = html_entity_decode($post['title'],ENT_QUOTES,'UTF-8');
+			} else if (!$isAuthor) {
+				$post2 = $post[$k];
         	}
 
             $mapped[$v] = $isAuthor ? $post['author'][$k] : $post2;
