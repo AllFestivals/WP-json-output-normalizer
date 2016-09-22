@@ -3,7 +3,7 @@
 * Plugin Name: WP json output normalizer
 * Plugin URI: https://github.com/AllFestivals/WP-json-output-normalizer
 * Description: Filtering posts by meta data of post. Adding by us selected items to JSON.
-* Version: 1.1.0
+* Version: 1.1.1
 * Author: marek
 * License: GPL2
 */
@@ -47,7 +47,7 @@ function json_normalizer_prepare_post($post) {
 class Post_to_Object {
     public $post = null;
     // Fields selected to be included in map
-    public $map = array('ID', 'title', 'link', 'content', 'date', 'author', 'featured_image', 'type');
+    public $map = array('ID', 'title', 'link', 'content', 'date', 'author', 'featured_image', 'type', 'excerpt');
     public $author_map = array('ID', 'username', 'name', 'firstname', 'lastname', 'avatar', 'description');
     public function __construct($post) {
         $this->post = $post;
